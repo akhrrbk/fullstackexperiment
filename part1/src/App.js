@@ -1,45 +1,61 @@
 import logo from './logo.svg';
 import './App.css';
 
-const Hello = (props) => {
+const Header = (props) => {
   return (
-    <div>
-      <p>
-        Hello {props.name}, you are {props.age} years old!
-      </p>
-    </div>
+    <>
+      <h1>{props.course}</h1>
+    </>
+  )
+} 
+
+const Content = (props) => {
+  return (
+    <>
+      <p>{props.parts[0].part} {props.parts[0].exercise} </p>
+      <p>{props.parts[1].part} {props.parts[1].exercise} </p>
+      <p>{props.parts[2].part} {props.parts[2].exercise} </p>
+    </>
   )
 }
 
-const Footer = () => {
+const Footer = (props) => {
   return (
-    <div>
-      <p>
-      greeting app created by <a href="https://github.com/akhrrbk">akhrrbk</a> with love
-      </p>
-    </div>
+    <>
+        <p>Number of Exercises: {props.parts[0].exercise + props.parts[1].exercise + props.parts[2].exercise}</p>
+    </>
   )
 }
 
-function App() {
-  // const datentime = new Date();
-  // console.log('hi')
-
-  const name = 'Peter';
-  const age = 10;
-
+const App = () => {
+  
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        part: 'Fundamentals of React',
+        exercise: 10
+      },
+      {
+        part: 'Using props to pass data',
+        exercise: 7
+      },
+      {
+        part: 'State of a component',
+        exercise: 14
+      }
+    ]
+  }
+  
   return (
-    // <p>current time: {datentime.toString()}</p>  
+    <>
+      <Header course={course.name} />
 
-    <div>
-      <h1>Greetings</h1>
-      <Hello name='maya' age={26} />
-      <Hello name={name} age={age} />
-      <Hello />
+      <Content parts={course.parts} />
+      
+      <Footer parts={course.parts} />
 
-      <Footer />
-    </div>
-
+    </> 
   );
 }
 
