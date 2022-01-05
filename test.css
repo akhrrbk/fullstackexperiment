@@ -1,6 +1,37 @@
-li {
+form li + li {
   margin: 5px;
 }
 ul {
-  margin-top: 3vh;
+  margin-top: 0;
+  padding: 0;
+  list-style: none;
+}
+form {
+  margin: 0 auto;
+  width: 25vw;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: 7px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+label {
+  /* display: inline-block; */
+  width: 10vw;
+  text-align: right;
+}
+input,
+textarea {
+  font: 1em sans-serif;
+  width: 15vw;
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+}
+input:focus,
+textarea:focus {
+  border-color: lightblue;
+}
+.button,
+button {
+  padding-left: 90px;
+  margin-left: 0.5em;
 }
