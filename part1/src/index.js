@@ -11,4 +11,4 @@ import reportWebVitals from './reportWebVitals';
     document.getElementById('root')
   );
 
-//  reportWebVitals();
+ reportWebVitals();
