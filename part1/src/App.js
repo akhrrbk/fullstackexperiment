@@ -1,56 +1,31 @@
 import './App.css';
 import React, {useState} from 'react'
 
-const History = (props) => {
-  if(props.allClicks.length === 0){
-    return (
-      <div>
-        press the button for a change
-      </div>
-    )
-  }
-
-  return (
-    <div>
-      button press history: {props.allClicks.join('')}
-    </div>
-  )
-}
-
-const Button = ({onClick, text}) => {
-  return (
-    <div>
-      <button onClick={onClick}>{text}</button>
-    </div>
-  )
-}
-
 const App = () => {
 
-  const [clicks, setLeftnRight] = useState({
-    leftcounter : 0, rightcounter : 0
-  })
-  const [allClicks, setAll] = useState([])
+  const [value, setValue] = useState(0)
 
-  const handleLeftClick = () => {
-    setAll(allClicks.concat('L'))
-    setLeftnRight({...clicks, leftcounter: clicks.leftcounter+1})
-  } 
-  const handleRightClick = () => {
-    setAll(allClicks.concat('R'))
-    setLeftnRight({...clicks, rightcounter: clicks.rightcounter+1})
+  const setToValue = (newValue) => {
+    setValue(newValue)
   }
 
   return (
     <div>
-      <div>left: {clicks.leftcounter}</div>
-      <div>right: {clicks.rightcounter}</div>
-
-      <Button onClick={handleLeftClick} text='left' />
-      <Button onClick={handleRightClick} text="right" />
-      <History allClicks={allClicks} />
+      <div>{value}</div>
+      <button onClick={setToValue(1000)} >+1000</button>
+      <button onClick={setToValue(0)} >reset</button>
+      <button onClick={setToValue(value + 1)} >+1</button>
     </div>
-  )  
+  )
+  // const hello = (who) => console.log('hello', who)
+
+  // return (
+  //   <div>
+  //     <button onClick={hello('mama')}>button1</button>
+  //     <button onClick={hello('papa')}>button2</button>
+  //     <button onClick={hello('ukachang')}>button3</button>
+  //   </div>
+  // )  
 }
 
 export default App;
