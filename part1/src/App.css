@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+img {
+  border: 1px solid black;
+}
+div {
+  margin-left: 1vw;
+}
+button {
+  background-color: transparent;
+  margin: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+button:hover {
+  color: white;
+  background-color: black;
+}
