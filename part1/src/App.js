@@ -1,54 +1,42 @@
-import React from 'react'
-import Course from "./components/Course"
+import React, {useState} from 'react'
+import Note from './components/Note'
 
-const App = () => {
+const Title = ({text}) => <h2>{text}</h2>
+const App = (props) => {
 
-  const courses = [
-    {
-      name: 'Half Stack application development',
-      id: 1,
-      parts: [
-        {
-          name: 'Fundamentals of React',
-          exercises: 10,
-          id: 1
-        },
-        {
-          name: 'Using props to pass data',
-          exercises: 7,
-          id: 2
-        },
-        {
-          name: 'State of a component',
-          exercises: 14,
-          id: 3
-        },
-        {
-          name: 'Redux',
-          exercises: 11,
-          id: 4
-        }
-      ]
-    }, 
-    {
-      name: 'Node.js',
-      id: 2,
-      parts: [
-        {
-          name: 'Routing',
-          exercises: 3,
-          id: 1
-        },
-        {
-          name: 'Middlewares',
-          exercises: 7,
-          id: 2
-        }
-      ]
+  const [notes, setNotes] = useState(props.notes)
+  const [newNote, setNewNote] = useState('')
+
+  const handleNoteChange = (e) => {
+    console.log(e.target.value)
+    setNewNote(e.target.value)
+  }
+
+  const addNote = (e) => {
+    e.preventDefault()
+    console.log('button clicked', e.target)
+    const noteObject = {
+      content: newNote,
+      data: new Date().toISOString(),
+      important: Math.random() < 0.5,
+      id: notes.length +1,
     }
-  ]
 
-  return <Course courses={courses} />
+    setNotes(notes.concat(noteObject))
+    setNewNote('')
+  }
+  return (
+    <div>
+      <Title text='Notes' />
+      <ul>
+        {notes.map((note) => <Note key={note.id} note={note} /> )}
+      </ul>
+      <form onSubmit={addNote}>
+        <input type="text" value={newNote} onChange={handleNoteChange} />
+        <button type='submit'>addNote</button>
+      </form>
+    </div>
+  )
 }
 
 export default App
