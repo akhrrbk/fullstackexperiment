@@ -1,26 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import Search from './components/Search'
+import Countries from './components/Countries'
 
 const App = () => { 
 
   const [notes, setNotes] = useState([])
-    // const [newNote, setNewNote] = useState('')
-    // const [showAll, setShowAll] = useState(true)
+  const [newSearch, setNewSearch] = useState('')
 
-    useEffect(() => {
-    // console.log('effect is working')
+  const countriestoshow = notes.filter(note => note.name.common.toLowerCase().includes(newSearch.toLowerCase()))
+  
+  useEffect(() => {
     axios
-      .get('http://localhost:3001/persons')
+      .get('https://restcountries.com/v3.1/all')
       .then(response => {
-        const mypersons = response.data
-        // console.log(mypersons.map(axror => axror.name))
-        console.log(mypersons);
         setNotes(response.data)
       })
   }, [])
 
+  
+
+  const searchByName = (e) => {
+    setNewSearch(e.target.value)
+  }
+
+  // console.log(notes[0].name.common);
   return (
-    <div></div>
+    <div>
+      <Search searchByName={searchByName} />
+
+      <Countries countriestoshow={countriestoshow} />
+
+    </div>
   )
 }
 
