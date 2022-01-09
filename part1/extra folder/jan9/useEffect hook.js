@@ -7,18 +7,18 @@ const App = () => {
     // const [newNote, setNewNote] = useState('')
     // const [showAll, setShowAll] = useState(true)
 
-    useEffect(() => {
+  const hook = () => {
     // console.log('effect is working')
     axios
-      .get('http://localhost:3001/persons')
+      .get('http://localhost:3001/notes')
       .then(response => {
-        const mypersons = response.data
-        // console.log(mypersons.map(axror => axror.name))
-        console.log(mypersons);
+        // console.log('axios promise fulfilled')
         setNotes(response.data)
       })
-  }, [])
-
+  }
+  
+  useEffect(hook , [])
+  console.log(`rendering ${notes.length} notes`);
   return (
     <div></div>
   )
