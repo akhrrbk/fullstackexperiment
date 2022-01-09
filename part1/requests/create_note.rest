@@ -1,0 +1,7 @@
+POSt http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+    "content": "Blah Blah Blah Blah Blah Blah",
+    "important": false
+}
