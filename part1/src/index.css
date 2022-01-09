@@ -14,3 +14,6 @@ code {
 * {
   margin-left: 1vw;
 }
+li {
+  list-style-type: none;
+}

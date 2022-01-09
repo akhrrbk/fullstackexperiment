@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
-import Title from './components/Title'
-import Filter from './components/Filter'
-import Persons from './components/Persons'
-import PersonForm from './components/PersonForm'
+import Note from './components/Note'
+
+const Title = ({text}) => <h2>{text}</h2>
 
 const App = (props) => {
 
@@ -49,7 +48,7 @@ const App = (props) => {
   }
 
   const searchByName = (e) => {
-    // console.log(e.target.value);
+    console.log(e.target.value);
     setNewSearch(e.target.value)
   }
 
@@ -57,15 +56,33 @@ const App = (props) => {
     <div>
       <Title text='Phonebook' />
       
-      <Filter searchByName={searchByName} />
+      <div>
+        <label htmlFor="search">search by name</label>
+        <input type="search" id='search' onChange={searchByName} />
+      </div>
 
       <Title text='add a new' />
-      
-      <PersonForm addNote={addNote} handleNameChange={handleNameChange} newName={newName} newNumber={newNumber} handleNumberChange={handleNumberChange} />
+      <form onSubmit={addNote}>
+        <div>
+          <label htmlFor="name">Name</label>
+          <input id='name' value={newName} onChange={handleNameChange}/>
+        </div>
+        
+        <div>
+          <label htmlFor="number">Number</label>
+          <input id='number' value={newNumber} onChange={handleNumberChange}/>
+        </div>
+        
+        <div>
+          <button type='submit'>Save</button>
+        </div>
+      </form>
 
       <Title text='Numbers' />
 
-      <Persons notestoshow={notestoshow} />
+      <ul>
+        {notestoshow.map((note, i) => <Note key={i} note={note} /> )}
+      </ul>
 
     </div>
   )
