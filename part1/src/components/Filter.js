@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = ({searchByName}) => {
+const Filter = ({searchByName}) => {
 
     return (
         <div>
@@ -10,4 +10,4 @@ const Search = ({searchByName}) => {
     )
 }
 
-export default Search
+export default Filter
