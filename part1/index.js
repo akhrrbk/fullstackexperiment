@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.json())
-
 
 let notes = [
   {
@@ -22,6 +23,12 @@ let notes = [
     content: "GET and POST are the most important methods of HTTP protocol",
     date: "2020-01-10T19:20:14.298Z",
     important: true
+  },
+  {
+    id: 4,
+    content: "4GET and POST are the most important methods of HTTP protocol",
+    date: "2021-01-10T19:20:14.298Z",
+    important: false
   }
 ]
 
@@ -42,7 +49,7 @@ const generateId = () => {
 
 app.post('/api/notes', (request, response) => {
   const body = request.body
-  console.log(body);
+  // console.log(body);
   if (!body.content) {
     return response.status(400).json({ 
       error: 'content missing' 
@@ -79,7 +86,7 @@ app.delete('/api/notes/:id', (request, response) => {
   response.status(204).end()
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
