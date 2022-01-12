@@ -10,7 +10,7 @@ s
 
 # production
 /build
-
+# this is a small change
 # misc
 .DS_Store
 .env.local
