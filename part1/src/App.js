@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Note from './components/Note'
-import noteService   from './services/nodes'
+import noteService from './services/nodes'
 
 const App = () => {
   const [persons, setNotes] = useState([])  
@@ -11,7 +11,6 @@ const App = () => {
   useEffect(()=> {
     noteService.getAll().then(initialNotes => setNotes(initialNotes))
   }, [])
-  
   
   const toggleImportanceOf = (id) => {
     const note = persons.find(note=>note.id === id)
@@ -51,7 +50,7 @@ const App = () => {
       <button onClick={()=> setShowAll(!showAll)}>show {showAll? 'important' : 'all'}</button>
       
       <ul>
-        {notesToShow.map((note) => <Note key={note.id} note={note} toggleImportance={()=> toggleImportanceOf(note.id)} /> )}
+        {persons.map((note) => <Note key={note.id} note={note} toggleImportance={()=> toggleImportanceOf(note.id)} /> )}
       </ul>
 
       <form onSubmit={addNote}>

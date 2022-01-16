@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import Note from './components/Note'
 import noteService from './services/nodes'
 
 const App = (props) => {
   const [persons, setPersons] = useState(props.persons)  
-  const [newName, setNewName] = useState('')  
+  const [newName, setNewName] = useState('')
+  const [showAll, setShowAll] = useState(true)
   const [newNumber, setNewNumber] = useState('')  
   
   useEffect(()=> {
@@ -35,16 +35,21 @@ const App = (props) => {
     e.preventDefault()
     setNewNumber(e.target.value)
   }
+  const notesToShow = showAll ? persons : persons.filter(note => note.important === true)
 
 
   return (
     <div>
 
       <h1>PhoneBook</h1>
+      <button onClick={()=> setShowAll(!showAll)}>show {showAll? 'important' : 'all'}</button>
+      {/* <ul>
+        {notesToShow.map((person) => <Note key={person.id} person={person} /> )}
+      </ul> */}
       <ul>
-        {persons.map((person) => <Note key={person.id} person={person} /> )}
+        {notesToShow.map((note) => <Note key={note.id} note={note} /> )}
       </ul>
-
+      
       <form onSubmit={addNote}>
         <div>
           <label htmlFor="inputtext">name</label>
